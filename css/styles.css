@@ -1,0 +1,340 @@
+/* 基础卡片与模块样式，配合 Tailwind 使用 */
+
+/* 通用区块：卡片化 + 玻璃拟态（柔和可爱风） */
+.section-card {
+  @apply mt-10 rounded-[1.7rem] border border-white/10 bg-white/10 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-2xl;
+}
+
+@media (min-width: 768px) {
+  .section-card {
+    @apply p-8;
+  }
+}
+
+.section-header {
+  @apply mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between;
+}
+
+.section-title {
+  @apply flex items-center gap-3 text-lg font-semibold tracking-wide text-white sm:text-xl;
+}
+
+.section-index {
+  @apply inline-flex h-7 w-7 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/80 via-accent/70 to-neon/80 text-xs font-bold text-white shadow-glow-accent;
+}
+
+.section-subtitle {
+  @apply text-xs text-gray-400 sm:text-sm;
+}
+
+/* 导航链接样式 */
+.nav-link {
+  @apply relative cursor-pointer text-xs uppercase tracking-[0.18em] text-gray-300 transition hover:text-white;
+}
+
+.nav-link-active {
+  @apply text-white;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.3rem;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7b61ff, #ff9ee7, #ffb6c1);
+  box-shadow: 0 0 12px rgba(123, 97, 255, 0.7);
+  transition: width 0.25s ease-out;
+}
+
+.nav-link-active::after {
+  width: 100%;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.mobile-nav-link {
+  @apply rounded-lg px-3 py-2 text-sm text-gray-200 transition hover:bg-primary/20 hover:text-white;
+}
+
+/* 信息条样式（关于我） */
+.info-row {
+  @apply flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/10 px-3 py-2;
+}
+
+.info-label {
+  @apply text-xs text-gray-400;
+}
+
+.info-value {
+  @apply text-xs text-gray-100 sm:text-[13px];
+}
+
+/* 技能软萌标签 / 小卡片 */
+.skill-pill {
+  @apply flex items-center gap-2 rounded-2xl border border-white/10 bg-white/10 px-3 py-2 text-[11px] text-gray-100;
+}
+
+/* 技能卡片（复刻参考网站 Skills：卡片 + 进度条结构） */
+.skill-card {
+  @apply flex gap-3 rounded-2xl border border-white/10 bg-white/10 p-4 shadow-[0_16px_45px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-transform duration-200;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 60px rgba(123, 97, 255, 0.4);
+}
+
+.skill-card-icon {
+  @apply flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/80 via-accent/70 to-neon/80 text-white shadow-glow-blue;
+}
+
+.skill-card-icon i {
+  font-size: 0.95rem;
+}
+
+.skill-card-body {
+  @apply flex-1 space-y-1;
+}
+
+.skill-card-title {
+  @apply text-sm font-semibold text-white;
+}
+
+.skill-card-percent {
+  @apply text-xs font-semibold text-accent;
+}
+
+.skill-card-desc {
+  @apply text-[11px] text-gray-300;
+}
+
+.skill-progress-track {
+  @apply mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10;
+}
+
+.skill-progress-bar {
+  @apply h-full rounded-full bg-gradient-to-r from-primary via-accent to-neon;
+  width: 0%;
+}
+
+/* 标签云标签 */
+.tag-chip {
+  @apply inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-[11px] text-gray-100;
+}
+
+/* 项目卡片 */
+.project-card {
+  @apply group flex flex-col overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#08081a]/85 shadow-[0_20px_60px_rgba(0,0,0,0.65)] backdrop-blur-2xl transition-transform duration-300;
+}
+
+.project-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 25px 80px rgba(123, 97, 255, 0.35);
+}
+
+.project-image-wrapper {
+  position: relative;
+  height: 170px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .project-image-wrapper {
+    height: 190px;
+  }
+}
+
+.project-image-wrapper img {
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image-wrapper img {
+  transform: scale(1.06);
+}
+
+.project-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(123, 97, 255, 0.45), transparent);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+.project-content {
+  @apply flex flex-1 flex-col gap-3 p-4 sm:p-5;
+}
+
+.project-title {
+  @apply text-[15px] font-semibold text-white;
+}
+
+.project-desc {
+  @apply text-xs text-gray-300 sm:text-[13px];
+}
+
+.project-tags {
+  @apply flex flex-wrap gap-2 text-[11px];
+}
+
+.project-tag {
+  @apply rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-gray-200;
+}
+
+.project-actions {
+  @apply mt-2 flex flex-wrap gap-3;
+}
+
+.project-btn-primary {
+  @apply inline-flex items-center gap-2 rounded-full bg-primary px-4 py-1.5 text-xs font-semibold text-white shadow-glow-blue transition hover:bg-primary/90;
+}
+
+.project-btn-secondary {
+  @apply inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] text-gray-100 transition hover:border-accent hover:bg-accent/10;
+}
+
+/* 时间轴样式（工作/教育统一） */
+.timeline {
+  @apply relative space-y-6;
+}
+
+.timeline-compact {
+  @apply space-y-5;
+}
+
+.timeline-item {
+  @apply relative flex gap-4 transition-transform duration-200;
+}
+
+.timeline-item:hover {
+  transform: translateY(-3px);
+}
+
+.timeline-item:hover .timeline-content {
+  @apply border-accent/80 bg-white/10;
+}
+
+.timeline-item:hover .timeline-dot {
+  box-shadow:
+    0 0 0 4px rgba(255, 182, 193, 0.3),
+    0 0 26px rgba(255, 158, 231, 0.9);
+}
+
+.timeline-line {
+  @apply absolute left-[11px] top-5 h-full w-px bg-gradient-to-b from-primary/80 via-accent/70 to-neon/80;
+}
+
+.timeline-dot {
+  @apply relative z-10 mt-1 h-3 w-3 rounded-full bg-accent shadow-glow-accent;
+  box-shadow:
+    0 0 0 4px rgba(255, 158, 231, 0.22),
+    0 0 24px rgba(255, 158, 231, 0.8);
+}
+
+.timeline-content {
+  @apply ml-6 flex-1 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-gray-200;
+}
+
+@media (min-width: 768px) {
+  .timeline-content {
+    @apply p-5;
+  }
+}
+
+.timeline-header {
+  @apply flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between;
+}
+
+.timeline-date {
+  @apply text-xs font-medium text-accent;
+}
+
+.timeline-title {
+  @apply text-sm font-semibold text-white sm:text-[15px];
+}
+
+.timeline-subtitle {
+  @apply text-xs text-gray-400;
+}
+
+.timeline-list {
+  @apply mt-2 list-disc space-y-1 pl-4 text-[13px] text-gray-300;
+}
+
+/* 联系方式模块 */
+.contact-row {
+  @apply flex items-center gap-3 rounded-2xl border border-white/10 bg-white/10 px-3 py-2.5;
+}
+
+.contact-icon {
+  @apply flex h-9 w-9 items-center justify-center rounded-xl text-base text-white;
+}
+
+.contact-icon:hover {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 0 18px rgba(255, 158, 231, 0.7);
+}
+
+.contact-icon.email {
+  background: linear-gradient(135deg, #7b61ff, #ff9ee7);
+}
+
+.contact-icon.wechat {
+  background: linear-gradient(135deg, #00c853, #a5ffce);
+}
+
+.contact-icon.tiktok {
+  background: radial-gradient(circle at 30% 0, #ff9ee7, #000000);
+}
+
+.contact-icon.bilibili {
+  background: linear-gradient(135deg, #00a1d6, #7b61ff);
+}
+
+.contact-icon.xiaohongshu {
+  background: linear-gradient(135deg, #ff6b81, #ffb6c1);
+}
+
+.contact-label {
+  @apply text-xs text-gray-400;
+}
+
+.contact-value {
+  @apply text-xs text-gray-100 hover:text-accent;
+}
+
+/* 表单样式 */
+.form-field label {
+  @apply mb-1 block text-xs text-gray-300;
+}
+
+.form-input {
+  @apply w-full rounded-xl border border-white/10 bg-black/30 px-3 py-1.5 text-xs text-gray-100 outline-none ring-primary/40 transition placeholder:text-gray-500 focus:border-primary/70 focus:ring-2;
+}
+
+/* 首页欢迎区淡入动画 */
+@keyframes fadeInUpSoft {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUpSoft 0.8s ease-out both;
+}
+
+/* 返回顶部按钮在移动端的额外空间 */
+@media (max-width: 639px) {
+  footer {
+    padding-bottom: 1.5rem;
+  }
+}
+

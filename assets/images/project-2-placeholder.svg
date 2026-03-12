@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#121226"/>
+      <stop offset="0.45" stop-color="#0B1024"/>
+      <stop offset="1" stop-color="#1A1633"/>
+    </linearGradient>
+    <linearGradient id="g" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFB6C1"/>
+      <stop offset="0.55" stop-color="#FF9EE7"/>
+      <stop offset="1" stop-color="#7B61FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" rx="44" fill="url(#bg)"/>
+  <path d="M0 520c220-120 360-160 620-60 250 96 360 70 580-40v280H0z" fill="#FF9EE7" opacity="0.10"/>
+  <path d="M0 560c240-120 420-160 680-40 230 108 320 78 520-20v240H0z" fill="#7B61FF" opacity="0.10"/>
+  <rect x="86" y="88" width="1028" height="524" rx="36" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+  <circle cx="980" cy="175" r="22" fill="url(#g)"/>
+  <circle cx="1030" cy="175" r="22" fill="url(#g)" opacity="0.7"/>
+  <circle cx="1080" cy="175" r="22" fill="url(#g)" opacity="0.45"/>
+  <text x="120" y="395" fill="#EDEBFF" font-family="ui-sans-serif, system-ui" font-size="34" font-weight="700">
+    yîb`Mþ 02
+  </text>
+  <text x="120" y="445" fill="rgba(255,255,255,0.75)" font-family="ui-sans-serif, system-ui" font-size="22">
+    ÿb:`„yî*þ / \Áw¥
+  </text>
+</svg>

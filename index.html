@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新人自媒体博主主页 | 个人简介</title>
+    <meta
+      name="description"
+      content="个人科技感简历与自媒体介绍页面，展示技能、项目、经历与联系方式。"
+    />
+    <!-- Tailwind CSS CDN（新手友好，无需本地构建） -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind 自定义主题配置（柔和科技 + 可爱配色）
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#7B61FF", // 主蓝紫
+              dark: "#121226", // 深空黑背景
+              accent: "#FF9EE7", // 粉紫渐变主色
+              neon: "#FFB6C1", // 柔和粉色点缀
+              danger: "#FF6B81",
+            },
+            boxShadow: {
+              "glow-blue": "0 0 30px rgba(123, 97, 255, 0.55)",
+              "glow-accent": "0 0 30px rgba(255, 158, 231, 0.6)",
+            },
+            backgroundImage: {
+              "gradient-cyber":
+                "linear-gradient(135deg, #121226 0%, #0b1024 40%, #1a1633 100%)",
+              "gradient-card":
+                "linear-gradient(135deg, rgba(123,97,255,0.32), rgba(255,158,231,0.18))",
+              "gradient-border":
+                "linear-gradient(120deg, #7B61FF, #FF9EE7, #FFB6C1)",
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Font Awesome 图标库 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- 自定义样式文件（按你的要求：css/style.css） -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body
+    class="bg-dark text-white min-h-screen antialiased selection:bg-primary/40 selection:text-white"
+  >
+    <!--
+      复刻对比清单（参考：https://chen2695248455-lang.github.io/myself-website/）
+      - 导航栏：固定顶部 + 滚动背景变化 + 当前模块高亮 + 移动端汉堡菜单（已复刻结构与交互，仅替换为可爱胶囊视觉）
+      - 首页欢迎区：左文右图布局，大标题 + 副标题 + 简介 + 行动按钮 + 右侧头像信息卡（已复刻结构，采用炫酷可爱视觉与 Q 版头像占位）
+      - 关于我模块：左侧文字简介 + 右侧关键信息条目，整体信息结构与参考网站 About 区保持一致（已复刻）
+      - 技能模块：网格技能卡片 + 技能说明 + 进度条百分比，滚动到该区域时触发加载动画（结构与交互已复刻为进度条形式，视觉为玻璃拟态可爱风）
+      - 项目模块：项目卡片（封面图 + 标题 + 描述 + 标签 + 跳转按钮），卡片 hover 上浮与阴影增强（已复刻参考网站 Projects 区的卡片交互逻辑）
+      - 经历时间轴模块：垂直时间轴 + 时间 / 标题 / 描述，hover 节点高亮（已复刻 Timeline 结构与交互形态）
+      - 联系方式模块：多平台图标 + 文本说明 + 链接，图标 hover 发光（已复刻 Contact 区横向信息布局与跳转逻辑）
+      - 页脚：版权信息居中 + 回到顶部按钮（点击平滑回到顶部，已复刻 Footer 行为）
+
+      视觉替换说明（在上述结构与交互保持不变前提下）：
+      - 背景改为深空星空 + 粒子（≤ 50），配色为蓝紫 / 粉紫 / 浅粉，可爱风渐变。
+      - 所有主要卡片、按钮采用超大圆角 + 玻璃拟态 + 渐变边框。
+      - 图标统一使用 Font Awesome 的星星、爱心等软萌图标。
+    -->
+    <!-- 粒子背景容器（仅首页） -->
+    <div id="particles-js" class="fixed inset-0 -z-10"></div>
+
+    <!-- 整体渐变遮罩，柔和星空氛围 -->
+    <div
+      class="pointer-events-none fixed inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(123,97,255,0.35),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(255,158,231,0.26),_transparent_55%)]"
+    ></div>
+
+    <!-- 顶部导航栏：固定顶部 + 平滑滚动 + 移动端汉堡菜单 -->
+    <header
+      id="top-nav"
+      class="fixed top-0 left-0 right-0 z-40 transition-colors duration-500 bg-transparent/40 backdrop-blur-md"
+    >
+      <div
+        class="mx-auto mt-2 flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-[#17172b]/80 px-4 py-2 shadow-[0_16px_40px_rgba(0,0,0,0.55)]"
+      >
+        <a
+          href="#home"
+          class="flex items-center gap-2 text-base font-semibold tracking-wide"
+        >
+          <span
+            class="flex h-8 w-8 items-center justify-center rounded-2xl bg-gradient-to-br from-primary via-accent to-neon shadow-glow-blue"
+          >
+            <i class="fa-solid fa-star text-white text-sm"></i>
+          </span>
+          <span class="hidden sm:inline">新人自媒体小星球</span>
+        </a>
+
+        <!-- 桌面导航 -->
+        <nav class="hidden items-center gap-5 text-xs font-medium md:flex">
+          <a href="#home" class="nav-link">首页</a>
+          <a href="#about" class="nav-link">关于我</a>
+          <a href="#skills" class="nav-link">技能</a>
+          <a href="#projects" class="nav-link">项目经历</a>
+          <a href="#experience" class="nav-link">工作经历</a>
+          <a href="#education" class="nav-link">教育经历</a>
+          <a href="#contact" class="nav-link">联系我</a>
+        </nav>
+
+        <!-- 移动端汉堡菜单按钮 -->
+        <button
+          id="menu-toggle"
+          class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/10 p-2 text-gray-100 hover:border-primary/60 hover:bg-primary/20 md:hidden"
+          aria-label="打开导航菜单（移动端）"
+        >
+          <i class="fa-solid fa-bars-staggered text-lg"></i>
+        </button>
+      </div>
+
+      <!-- 移动端菜单 -->
+      <div
+        id="mobile-menu"
+        class="hidden border-t border-white/10 bg-[#060b16]/95 backdrop-blur-xl md:hidden"
+      >
+        <nav class="mx-auto flex max-w-6xl flex-col px-4 py-3 text-sm">
+          <a href="#home" class="mobile-nav-link">首页</a>
+          <a href="#about" class="mobile-nav-link">关于我</a>
+          <a href="#skills" class="mobile-nav-link">技能</a>
+          <a href="#projects" class="mobile-nav-link">项目经历</a>
+          <a href="#experience" class="mobile-nav-link">工作经历</a>
+          <a href="#education" class="mobile-nav-link">教育经历</a>
+          <a href="#contact" class="mobile-nav-link">联系我</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 页面主体内容 -->
+    <main class="mx-auto max-w-6xl px-4 pt-24 pb-16 md:pb-24">
+      <!-- 首页欢迎区域（复刻参考网站 Hero：左文右图布局 + 个人信息卡） -->
+      <section
+        id="home"
+        class="relative grid gap-10 pb-16 pt-10 md:grid-cols-[1.4fr,1fr] md:pt-20 lg:gap-16"
+      >
+        <!-- 左侧文案 -->
+        <div class="flex flex-col justify-center gap-6 fade-in-up">
+          <p
+            class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-gray-200"
+          >
+            <span
+              class="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-primary to-accent shadow-glow-accent"
+            ></span>
+            新人博主 · 个人小宇宙
+          </p>
+
+          <h1
+            class="text-balance text-3xl font-bold leading-tight sm:text-4xl lg:text-[2.7rem]"
+          >
+            你好，我是
+            <span class="bg-gradient-to-r from-primary via-accent to-neon bg-clip-text text-transparent"
+              >一只正在长大的新人博主</span
+            >
+          </h1>
+
+          <p class="max-w-xl text-sm text-gray-300 sm:text-base">
+            这是我的自媒体小主页，用一页的空间，慢慢告诉你：我是谁、我在做什么、我正在悄悄变厉害的方向，还有——如果你也想一起玩，可以怎么找到我。
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <a
+              href="#projects"
+              class="inline-flex items-center gap-2 rounded-full bg-primary/90 px-6 py-2.5 text-sm font-semibold text-white shadow-glow-blue transition hover:bg-primary"
+            >
+              <i class="fa-solid fa-rocket text-xs"></i>
+              看看我做过的小项目
+            </a>
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 rounded-full border border-accent/70 bg-accent/10 px-6 py-2.5 text-sm font-semibold text-accent hover:border-accent hover:bg-accent/20"
+            >
+              <i class="fa-regular fa-envelope text-xs"></i>
+              找我聊天 / 合作
+            </a>
+          </div>
+
+          <div
+            class="mt-2 flex flex-wrap items-center gap-4 text-xs text-gray-400"
+          >
+            <div class="flex items-center gap-2">
+              <span class="h-1.5 w-8 rounded-full bg-primary/60"></span>
+              新人自媒体 / AI 爱好者 / 日常碎碎念
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧卡通形象 / 头像卡片 -->
+        <div
+          class="relative flex items-center justify-center md:justify-end md:pt-4"
+        >
+          <div
+            class="relative w-full max-w-xs rounded-3xl border border-white/10 bg-gradient-card p-[1px] shadow-glow-blue"
+          >
+            <div
+              class="relative rounded-3xl bg-gradient-cyber/70 px-6 pb-6 pt-8 backdrop-blur-2xl"
+            >
+              <div
+                class="absolute inset-x-8 -top-10 h-24 rounded-3xl bg-gradient-border opacity-60 blur-3xl"
+              ></div>
+
+              <div class="relative flex flex-col items-center gap-4">
+                <!-- 卡通形象 / 头像占位图说明：将 src 替换为你的插画或照片 -->
+                <div
+                  class="relative h-32 w-32 overflow-hidden rounded-[1.7rem] border border-white/20 bg-white/10 shadow-glow-blue"
+                >
+                  <img
+                    src="./assets/images/avatar-placeholder.svg"
+                    alt="卡通形象 / 个人头像占位图（请替换为自己的头像或插画）"
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                  <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-accent/40 mix-blend-screen"
+                  ></div>
+                </div>
+
+                <div class="text-center">
+                  <h2 class="text-lg font-semibold tracking-wide">
+                    你的名字 / 昵称
+                  </h2>
+                  <p class="mt-1 text-xs uppercase tracking-[0.25em] text-gray-400">
+                    NEW CREATOR · AI FRIEND · DAILY SHARER
+                  </p>
+                </div>
+
+                <div
+                  class="grid w-full grid-cols-3 gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 text-center text-xs"
+                >
+                  <div>
+                    <p class="text-base font-semibold text-accent">10W+</p>
+                    <p class="mt-1 text-[11px] text-gray-400">想要努力到达</p>
+                  </div>
+                  <div>
+                    <p class="text-base font-semibold text-primary">50+</p>
+                    <p class="mt-1 text-[11px] text-gray-400">正在慢慢积累</p>
+                  </div>
+                  <div>
+                    <p class="text-base font-semibold text-neon">∞</p>
+                    <p class="mt-1 text-[11px] text-gray-400">持续学习中</p>
+                  </div>
+                </div>
+
+                <div class="mt-1 flex gap-3 text-sm text-gray-300">
+                  <span
+                    class="flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 text-xs"
+                  >
+                    <i class="fa-solid fa-code text-[11px] text-primary"></i>
+                    AI / 编程小白升级中
+                  </span>
+                  <span
+                    class="flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 text-xs"
+                  >
+                    <i class="fa-solid fa-video text-[11px] text-accent"></i>
+                    生活记录 & 碎碎念
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 关于我模块（复刻参考网站 About：文字介绍 + 关键信息条） -->
+      <section id="about" class="section-card">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="section-index">01</span> 关于我
+          </h2>
+          <p class="section-subtitle">用轻松、真诚的方式，把「我」介绍给第一次见面的你</p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-[1.4fr,1fr]">
+          <div class="space-y-4 text-sm text-gray-300 sm:text-[15px]">
+            <p>
+              我是一名
+              <span class="text-accent">还在成长中的新人自媒体博主</span
+              >，喜欢记录学习编程、折腾 AI 工具、发现生活里有趣的小细节。
+            </p>
+            <p>
+              目前主要活跃于
+                <span class="text-primary">抖音、B站、小红书</span>
+                等平台，主要分享「AI / 编程学习日常、效率工具、碎碎念 vlog」。
+            </p>
+            <p>
+              如果你是粉丝，希望你在这里能更了解屏幕背后的我；如果你是潜在合作方，也希望你可以快速判断
+              <span class="text-neon">「我是不是你想找的那种创作者」</span>。
+            </p>
+          </div>
+
+          <div class="space-y-3 text-sm">
+            <div class="info-row">
+              <span class="info-label">定位</span>
+              <span class="info-value">新人自媒体博主 / AI 爱好者</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">内容方向</span>
+              <span class="info-value">AI / 编程学习 · 效率工具 · 生活碎碎念</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">关键词</span>
+              <span class="info-value">真诚、可爱、慢慢变厉害</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">当前城市</span>
+              <span class="info-value">请填写你的城市</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 技能展示模块（复刻参考网站 Skills：技能卡片 + 进度条 + 滚动加载动画） -->
+      <section id="skills" class="section-card">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="section-index">02</span> 核心技能
+          </h2>
+          <p class="section-subtitle">
+            参考网站的技能卡片 + 进度条结构，这里用可爱玻璃卡片展示我正在慢慢变厉害的小方向
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <!-- 左侧：技能卡片网格（复刻参考网站 Skills 卡片结构） -->
+          <div class="grid gap-4 sm:grid-cols-2">
+            <!-- 单个技能卡片示例：可按需复制修改 -->
+            <article class="skill-card">
+              <div class="skill-card-icon">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+              </div>
+              <div class="skill-card-body">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="skill-card-title">AI 工具折腾</h3>
+                  <span class="skill-card-percent" data-skill-percent>80%</span>
+                </div>
+                <p class="skill-card-desc">
+                  喜欢尝试各种 AI 工具，把好用的流程沉淀成小模板。
+                </p>
+                <div class="skill-progress-track">
+                  <div
+                    class="skill-progress-bar"
+                    data-percent="80"
+                    data-skill-bar
+                  ></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="skill-card">
+              <div class="skill-card-icon">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <div class="skill-card-body">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="skill-card-title">编程入门练习</h3>
+                  <span class="skill-card-percent" data-skill-percent>65%</span>
+                </div>
+                <p class="skill-card-desc">
+                  正在学习前端 / JS / 简单脚本，用代码实现一些小想法。
+                </p>
+                <div class="skill-progress-track">
+                  <div
+                    class="skill-progress-bar"
+                    data-percent="65"
+                    data-skill-bar
+                  ></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="skill-card">
+              <div class="skill-card-icon">
+                <i class="fa-solid fa-clapperboard"></i>
+              </div>
+              <div class="skill-card-body">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="skill-card-title">剪辑 / 卡点</h3>
+                  <span class="skill-card-percent" data-skill-percent>70%</span>
+                </div>
+                <p class="skill-card-desc">
+                  会用常见剪辑工具剪 vlog / 卡点视频，慢慢打磨节奏感。
+                </p>
+                <div class="skill-progress-track">
+                  <div
+                    class="skill-progress-bar"
+                    data-percent="70"
+                    data-skill-bar
+                  ></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="skill-card">
+              <div class="skill-card-icon">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <div class="skill-card-body">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="skill-card-title">沟通 & 反馈</h3>
+                  <span class="skill-card-percent" data-skill-percent>85%</span>
+                </div>
+                <p class="skill-card-desc">
+                  认真看每一条评论，真诚回复，也乐于听到不同观点。
+                </p>
+                <div class="skill-progress-track">
+                  <div
+                    class="skill-progress-bar"
+                    data-percent="85"
+                    data-skill-bar
+                  ></div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- 右侧：技能标签云（复刻参考网站的 Tips / Tags 区） -->
+          <div
+            class="flex flex-col justify-between gap-5 rounded-2xl border border-white/10 bg-white/5 p-5 text-sm"
+          >
+            <div>
+              <p class="text-sm text-gray-300">
+                右侧这一列小标签，对应的是参考网站里对技能和方向的「快速标签说明」，你可以完全按自己情况来改。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <span class="tag-chip">
+                <i class="fa-solid fa-sparkles text-yellow-200"></i>
+                新人博主
+              </span>
+              <span class="tag-chip">
+                <i class="fa-solid fa-robot text-accent"></i>
+                AI 爱好者
+              </span>
+              <span class="tag-chip">
+                <i class="fa-solid fa-cat text-pink-300"></i>
+                偶尔社恐但真诚
+              </span>
+              <span class="tag-chip">
+                <i class="fa-solid fa-keyboard text-emerald-300"></i>
+                正在学编程
+              </span>
+              <span class="tag-chip">
+                <i class="fa-solid fa-video text-primary"></i>
+                喜欢剪视频
+              </span>
+              <span class="tag-chip">
+                <i class="fa-solid fa-cloud-moon text-indigo-300"></i>
+                深夜思考选手
+              </span>
+              <span class="tag-chip">
+                <i class="fa-solid fa-book-open text-slate-200"></i>
+                爱做学习笔记
+              </span>
+              <span class="tag-chip">
+                <i class="fa-solid fa-people-group text-indigo-300"></i>
+                慢热但好相处
+              </span>
+              <span class="tag-chip">
+                <i class="fa-solid fa-lightbulb text-amber-300"></i>
+                总有奇怪点子
+              </span>
+              <span class="tag-chip">
+                <i class="fa-solid fa-location-dot text-rose-300"></i>
+                希望和你一起成长
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 项目经历模块（复刻参考网站 Projects：卡片 + 封面 + 两个按钮） -->
+      <section id="projects" class="section-card">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="section-index">03</span> 代表项目
+          </h2>
+          <p class="section-subtitle">
+            不一定「很厉害」，但都是真实发生在我生活里的小作品
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          <!-- 项目卡片 1 -->
+          <article class="project-card">
+            <div class="project-image-wrapper">
+              <!-- 项目封面占位图：请替换为 ./images/project-1.png -->
+              <img
+                src="./assets/images/project-1-placeholder.svg"
+                alt="项目封面占位图（项目 1）"
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
+              <div class="project-image-overlay"></div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">个人小宇宙 · 知识库 & 博客</h3>
+              <p class="project-desc">
+                使用
+                <span class="text-accent">静态站点 + 自动化部署</span>
+                搭建的个人小站，用来整理学习笔记、AI 实验、工具推荐和一些不想丢掉的小想法。
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">前端开发</span>
+                <span class="project-tag">内容沉淀</span>
+                <span class="project-tag">自动化部署</span>
+              </div>
+              <div class="project-actions">
+                <a
+                  href="https://github.com/your-name/your-project"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="project-btn-primary"
+                >
+                  <i class="fa-brands fa-github text-sm"></i>
+                  查看 GitHub
+                </a>
+                <a
+                  href="#"
+                  class="project-btn-secondary"
+                  aria-label="查看项目详情"
+                >
+                  <span>项目详情</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 项目卡片 2 -->
+          <article class="project-card">
+            <div class="project-image-wrapper">
+              <!-- 项目封面占位图：请替换为 ./images/project-2.png -->
+              <img
+                src="./assets/images/project-2-placeholder.svg"
+                alt="项目封面占位图（项目 2）"
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
+              <div class="project-image-overlay"></div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">XX 主题系列短视频</h3>
+              <p class="project-desc">
+                策划并持续更新的系列内容，围绕
+                <span class="text-primary">编程入门 / AI 工具 / 效率提升</span>
+                等主题，单条播放最高达到 XX 万，全系列播放量超过 XXX 万。
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">内容策划</span>
+                <span class="project-tag">视频制作</span>
+                <span class="project-tag">数据拆解</span>
+              </div>
+              <div class="project-actions">
+                <a href="#" class="project-btn-primary">
+                  <i class="fa-brands fa-tiktok text-sm"></i>
+                  抖音合集
+                </a>
+                <a href="#" class="project-btn-secondary">
+                  <span>更多案例</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 项目卡片 3 -->
+          <article class="project-card">
+            <div class="project-image-wrapper">
+              <!-- 项目封面占位图：请替换为 ./images/project-3.png -->
+              <img
+                src="./assets/images/project-3-placeholder.svg"
+                alt="项目封面占位图（项目 3）"
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
+              <div class="project-image-overlay"></div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">品牌合作案例 · XX 品牌</h3>
+              <p class="project-desc">
+                与 XX 品牌达成深度合作，从
+                <span class="text-neon">内容策划、脚本撰写、拍摄执行到数据复盘</span>
+                全流程参与，帮助品牌在目标人群中获得 XX 级别的曝光。
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">品牌合作</span>
+                <span class="project-tag">整合营销</span>
+                <span class="project-tag">数据复盘</span>
+              </div>
+              <div class="project-actions">
+                <a href="#" class="project-btn-primary">
+                  <i class="fa-solid fa-briefcase text-sm"></i>
+                  合作详情 PDF
+                </a>
+                <a href="#" class="project-btn-secondary">
+                  <span>更多品牌案例</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 经历时间轴模块（复刻参考网站 Experience：垂直时间轴 + hover 高亮） -->
+      <section id="experience" class="section-card">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="section-index">04</span> 工作经历
+          </h2>
+          <p class="section-subtitle">简简单单列出，我目前为止的「正经工作」和创作经历</p>
+        </div>
+
+        <div class="timeline">
+          <!-- 时间轴项示例，可自行增删 -->
+          <div class="timeline-item">
+            <div class="timeline-line"></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="timeline-date">2023 - 至今</span>
+                <h3 class="timeline-title">自媒体创作者（正在探索中）</h3>
+              </div>
+              <p class="timeline-subtitle">个人品牌运营</p>
+              <ul class="timeline-list">
+                <li>尝试在抖音 / B 站 / 小红书 等平台稳定更新内容。</li>
+                <li>独立完成选题、脚本、拍摄、剪辑与运营的全流程。</li>
+                <li>正在逐步摸索适合自己的内容方向和创作节奏。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-line"></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="timeline-date">2020 - 2023</span>
+                <h3 class="timeline-title">XX 科技公司 · 前端工程师</h3>
+              </div>
+              <p class="timeline-subtitle">Web 前端开发</p>
+              <ul class="timeline-list">
+                <li>负责公司核心产品 Web 前端的开发与维护。</li>
+                <li>参与后台管理系统、数据可视化等项目的设计与实现。</li>
+                <li>积极推动前端工程化与性能优化实践。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 教育经历模块（复刻参考网站 Education：与时间轴统一视觉） -->
+      <section id="education" class="section-card">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="section-index">05</span> 教育经历
+          </h2>
+          <p class="section-subtitle">
+            和工作经历一样，简单列一下自己的学习背景就好
+          </p>
+        </div>
+
+        <div class="timeline timeline-compact">
+          <div class="timeline-item">
+            <div class="timeline-line"></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="timeline-date">2016 - 2020</span>
+                <h3 class="timeline-title">XX 大学 · 计算机相关专业</h3>
+              </div>
+              <p class="timeline-subtitle">本科</p>
+              <ul class="timeline-list">
+                <li>主修编程、数据结构、计算机网络等课程。</li>
+                <li>参与多个校内外技术竞赛和项目实践。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 联系方式模块（复刻参考网站 Contact：多平台图标 + 文本 + 链接） -->
+      <section id="contact" class="section-card">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="section-index">06</span> 联系方式 & 合作
+          </h2>
+          <p class="section-subtitle">
+            如果你想跟我打个招呼、提点建议，或者聊一聊合作，都可以通过下面这些方式找到我
+          </p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-[1.1fr,1.1fr]">
+          <!-- 联系方式图标列表 -->
+          <div
+            class="space-y-5 rounded-2xl border border-white/10 bg-white/5 p-5"
+          >
+            <div class="space-y-2 text-sm text-gray-300">
+              <p>
+                推荐优先使用邮箱或微信进行沟通。下面是示例内容，你可以根据自己的真实信息自由替换。
+              </p>
+            </div>
+
+            <div class="space-y-3 text-sm">
+              <div class="contact-row">
+                <div class="contact-icon email">
+                  <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div>
+                  <p class="contact-label">邮箱</p>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <a
+                      href="mailto:[你的邮箱]"
+                      class="contact-value"
+                      >[你的邮箱]</a
+                    >
+                    <button
+                      type="button"
+                      class="copy-btn"
+                      data-copy="[你的邮箱]"
+                      aria-label="点击复制邮箱"
+                    >
+                      <i class="fa-regular fa-copy"></i>
+                      复制
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <div class="contact-icon wechat">
+                  <i class="fa-brands fa-weixin"></i>
+                </div>
+                <div>
+                  <p class="contact-label">微信</p>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <p class="contact-value">微信号：[你的微信号]</p>
+                    <button
+                      type="button"
+                      class="copy-btn"
+                      data-copy="[你的微信号]"
+                      aria-label="点击复制微信号"
+                    >
+                      <i class="fa-regular fa-copy"></i>
+                      复制
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <div class="contact-icon tiktok">
+                  <i class="fa-brands fa-tiktok"></i>
+                </div>
+                <div>
+                  <p class="contact-label">抖音</p>
+                  <a href="#" class="contact-value">抖音号 / 主页链接</a>
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <div class="contact-icon bilibili">
+                  <i class="fa-brands fa-bilibili"></i>
+                </div>
+                <div>
+                  <p class="contact-label">B 站</p>
+                  <a href="#" class="contact-value">B 站昵称 / 主页链接</a>
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <div class="contact-icon xiaohongshu">
+                  <i class="fa-solid fa-book-open"></i>
+                </div>
+                <div>
+                  <p class="contact-label">小红书</p>
+                  <a href="#" class="contact-value">小红书昵称 / 主页链接</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 微信二维码 + 简易表单 -->
+          <div class="grid gap-5 md:grid-rows-[auto,1fr]">
+            <div
+              class="flex flex-col items-center gap-3 rounded-2xl border border-accent/60 bg-accent/5 p-4"
+            >
+              <p class="text-sm font-medium text-accent">
+                微信二维码（请替换图片）
+              </p>
+              <div
+                class="flex h-40 w-40 items-center justify-center overflow-hidden rounded-xl border border-accent/50 bg-white/10"
+              >
+                <!-- 微信二维码占位图：请替换为 ./images/wechat-qr.png -->
+                <img
+                  src="./assets/images/wechat-qr-placeholder.svg"
+                  alt="微信二维码占位图（请替换为你的二维码）"
+                  class="h-full w-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+              <p class="text-[11px] text-accent/80">
+                提示：将二维码图片命名为 wechat-qr.png 放在
+                <code>assets/images/</code>，并把上方图片路径改成
+                <code>./assets/images/wechat-qr.png</code> 即可。
+              </p>
+            </div>
+
+            <form
+              class="space-y-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm"
+            >
+              <!-- 说明：该表单为静态展示，不会真实发送，如需后台功能可后续拓展 -->
+              <p class="text-xs text-gray-400">
+                简易联系表单（示意）：静态页面无法直接发送邮件，如需可接入第三方服务（例如
+                Formspree、Getform 等）。
+              </p>
+              <div class="grid gap-3 md:grid-cols-2">
+                <div class="form-field">
+                  <label for="name">称呼</label>
+                  <input
+                    id="name"
+                    type="text"
+                    placeholder="如何称呼你？"
+                    class="form-input"
+                  />
+                </div>
+                <div class="form-field">
+                  <label for="email">邮箱</label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="方便留下联系邮箱"
+                    class="form-input"
+                  />
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="message">合作 / 想说的话</label>
+                <textarea
+                  id="message"
+                  rows="3"
+                  placeholder="简单描述一下你的需求或想合作的方向～"
+                  class="form-input resize-none"
+                ></textarea>
+              </div>
+              <button
+                type="button"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white shadow-glow-blue transition hover:bg-primary/90"
+              >
+                <i class="fa-regular fa-paper-plane text-xs"></i>
+                表单示意（静态，不会真正发送）
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer
+      class="border-t border-white/10 bg-black/60 py-5 text-xs text-gray-400 backdrop-blur-xl"
+    >
+      <div
+        class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 sm:flex-row"
+      >
+        <p>
+          © <span id="year"></span> 你的名字. 保留所有权利。
+          <span class="text-[11px] text-gray-500">
+            本页面基于 HTML + Tailwind CSS + JavaScript 构建。
+          </span>
+        </p>
+        <div class="flex items-center gap-4">
+          <button
+            id="back-to-top"
+            class="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-medium text-gray-200 hover:border-primary hover:bg-primary/20"
+          >
+            <i class="fa-solid fa-arrow-up text-[10px]"></i>
+            回到顶部
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 粒子背景脚本（轻量） -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.4.0/tsparticles.bundle.min.js"></script>
+    <!-- 自定义交互逻辑 -->
+    <script src="./js/script.js"></script>
+  </body>
+</html>
+
